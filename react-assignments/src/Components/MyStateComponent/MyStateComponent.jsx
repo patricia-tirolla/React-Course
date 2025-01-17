@@ -1,18 +1,16 @@
 import React, { useState } from "react"
 import "./MyStateComponent.css"
 
-const MyStateComponent = (props) => {
+const MyStateComponent = () => {
   const [inputNameValue, setInputNameValue] = useState("");
   const [inputAgeValue, setInputAgeValue] = useState("");
   const [showResults, setShowResults] = useState(false);
 
-  // const handleInputNameValue = (event) => {
-  //   setInputNameValue(event.target.value);
-  // }
-
-  // const handleInputAgeValue = (event) => {
-  //   setInputAgeValue(event.target.value);
-  //}
+  const handleClearButton = () => {
+    setInputNameValue("")
+    setInputAgeValue("");
+    setShowResults(false);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,17 +24,17 @@ const MyStateComponent = (props) => {
       <form onSubmit={handleSubmit}>
         <label>
           Name:
-          <input type="text" onChange={(e) => setInputNameValue(e.target.value)} />
+          <input type="text" value={inputNameValue} onChange={(e) => setInputNameValue(e.target.value)} />
         </label>
 
         <label>
           Age:
-          <input type="number" onChange={(e) => setInputAgeValue(e.target.value)} />
+          <input type="number" value={inputAgeValue} onChange={(e) => setInputAgeValue(e.target.value)} />
         </label>
         <button type="submit">Submit</button>
+        <button type="button" onClick={handleClearButton}>Clear</button>
       </form>
       {showResults && (
-        //is that how I send the state as props?
         <ResultsContainerComponent name={inputNameValue} age={inputAgeValue}/>
       )}
     </div>
@@ -44,9 +42,7 @@ const MyStateComponent = (props) => {
 };
 
 function ResultsContainerComponent (props) {
-  
   return (
-    //how do I send my state component as a prop?
     <div className="results-container">
         <h3>{props.name},</h3>
         <p>You are {props.age} years old.</p>

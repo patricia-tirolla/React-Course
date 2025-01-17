@@ -11,18 +11,15 @@ function App() {
       hobbies: ["reading", "coding", "gaming"],
     },
   };
-  const data = {
-    name: "",
-    age: 0,
-  }
 
   return (
     <div>
       <header>
         <h1>This is React</h1>
-        <MyStateComponent name={data.name} age={data.age}/>
       </header>
-      {/* TODO create a child component in proper jsx, the component takes the person object as props and render the data */}
+      <main>
+      <MyStateComponent />
+      </main>
     </div>
   );
 }
