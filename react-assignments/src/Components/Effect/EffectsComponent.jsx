@@ -9,6 +9,7 @@ export function FetchAPIComponent() {
                 const res = await fetch('https://thronesapi.com/api/v2/Characters');
                 const json = (await res.json());
                 setdata(json);
+                console.log(json);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -17,7 +18,14 @@ export function FetchAPIComponent() {
     }, [])
     return (
         <div>
-            {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : 'Loading...'}
+            <h1>Characters</h1>
+            <ul>
+            {data.map((character) => (
+                <li key={character.id}>
+                 {character.fullName}
+                 </li>
+              ))}
+            </ul>
         </div>
     );
 }
